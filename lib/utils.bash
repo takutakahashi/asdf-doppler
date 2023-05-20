@@ -73,7 +73,6 @@ download_release() {
 	version="$1"
 	filename="$2"
 
-	# TODO: Adapt the release URL convention for doppler
   url="$GH_REPO/releases/download/${version}/doppler_${version}_$(get_platform)_$(get_arch).tar.gz"
 
 	echo "* Downloading $TOOL_NAME release $version..."
