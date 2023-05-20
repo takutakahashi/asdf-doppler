@@ -35,37 +35,37 @@ list_all_versions() {
 	list_github_tags
 }
 get_arch() {
-  local arch=""
+	local arch=""
 
-  case "$(uname -m)" in
-    x86_64 | amd64) arch="amd64" ;;
-    i686 | i386) arch="i386" ;;
-    armv6l) arch="armv6" ;;
-    armv7l) arch="armv7" ;;
-    aarch64 | arm64) arch="arm64" ;;
-    *)
-      fail "Arch '$(uname -m)' not supported!"
-      ;;
-  esac
+	case "$(uname -m)" in
+	x86_64 | amd64) arch="amd64" ;;
+	i686 | i386) arch="i386" ;;
+	armv6l) arch="armv6" ;;
+	armv7l) arch="armv7" ;;
+	aarch64 | arm64) arch="arm64" ;;
+	*)
+		fail "Arch '$(uname -m)' not supported!"
+		;;
+	esac
 
-  echo -n $arch
+	echo -n $arch
 }
 
 get_platform() {
-  local platform=""
+	local platform=""
 
-  case "$(uname | tr '[:upper:]' '[:lower:]')" in
-    darwin) platform="macOS" ;;
-    freebsd) platform="freebsd" ;;
-    linux) platform="linux" ;;
-    openbsd) platform="openbsd" ;;
-    windows) platform="windows" ;;
-    *)
-      fail "Platform '$(uname -m)' not supported!"
-      ;;
-  esac
+	case "$(uname | tr '[:upper:]' '[:lower:]')" in
+	darwin) platform="macOS" ;;
+	freebsd) platform="freebsd" ;;
+	linux) platform="linux" ;;
+	openbsd) platform="openbsd" ;;
+	windows) platform="windows" ;;
+	*)
+		fail "Platform '$(uname -m)' not supported!"
+		;;
+	esac
 
-  echo -n $platform
+	echo -n $platform
 }
 
 download_release() {
@@ -73,7 +73,7 @@ download_release() {
 	version="$1"
 	filename="$2"
 
-  url="$GH_REPO/releases/download/${version}/doppler_${version}_$(get_platform)_$(get_arch).tar.gz"
+	url="$GH_REPO/releases/download/${version}/doppler_${version}_$(get_platform)_$(get_arch).tar.gz"
 
 	echo "* Downloading $TOOL_NAME release $version..."
 	curl "${curl_opts[@]}" -o "$filename" -C - "$url" || fail "Could not download $url"
